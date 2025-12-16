@@ -1,7 +1,7 @@
 'use client'
 
 import { type ReactNode, useState } from 'react'
-import { WagmiProvider, type State } from 'wagmi'
+import { WagmiProvider } from 'wagmi'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import { wagmiConfig } from '@/lib/wagmi/config'
@@ -12,14 +12,13 @@ import '@rainbow-me/rainbowkit/styles.css'
 
 interface Web3ProviderProps {
   children: ReactNode
-  initialState?: State
 }
 
-export function Web3Provider({ children, initialState }: Web3ProviderProps) {
+export function Web3Provider({ children }: Web3ProviderProps) {
   const [queryClient] = useState(() => getQueryClient())
 
   return (
-    <WagmiProvider config={wagmiConfig} initialState={initialState}>
+    <WagmiProvider config={wagmiConfig}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider
           theme={customTheme}

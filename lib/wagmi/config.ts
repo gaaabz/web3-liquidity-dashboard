@@ -1,6 +1,6 @@
 'use client'
 
-import { http, createConfig, cookieStorage, createStorage } from 'wagmi'
+import { http, createConfig, createStorage } from 'wagmi'
 import { sepolia } from 'viem/chains'
 import { avalancheFuji } from '@/lib/constants/chains'
 import { connectorsForWallets } from '@rainbow-me/rainbowkit'
@@ -37,9 +37,9 @@ export const wagmiConfig = createConfig({
   chains: [sepolia, avalancheFuji],
   connectors,
   storage: createStorage({
-    storage: cookieStorage,
+    storage: typeof window !== 'undefined' ? window.localStorage : undefined,
   }),
-  ssr: true,
+  ssr: false,
   transports: {
     [sepolia.id]: http(),
     [avalancheFuji.id]: http('https://api.avax-test.network/ext/bc/C/rpc'),

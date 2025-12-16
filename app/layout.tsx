@@ -1,8 +1,5 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
-import { headers } from 'next/headers'
-import { cookieToInitialState } from 'wagmi'
-import { wagmiConfig } from '@/lib/wagmi/config'
 import { Web3Provider } from '@/components/providers/Web3Provider'
 import './globals.css'
 
@@ -41,21 +38,17 @@ export const metadata: Metadata = {
   },
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const headersList = await headers()
-  const cookie = headersList.get('cookie')
-  const initialState = cookieToInitialState(wagmiConfig, cookie)
-
   return (
     <html lang="en" className="dark">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
       >
-        <Web3Provider initialState={initialState}>
+        <Web3Provider>
           {children}
         </Web3Provider>
       </body>
