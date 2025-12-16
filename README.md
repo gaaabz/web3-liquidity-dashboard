@@ -5,61 +5,61 @@
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-06B6D4?style=for-the-badge&logo=tailwindcss)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-Dashboard profesional de gestión de liquidez para **Uniswap V3**, diseñado para LPs (Liquidity Providers) avanzados. Proporciona análisis detallado de posiciones, métricas en tiempo real y simulaciones de estrategias.
+Professional liquidity management dashboard for **Uniswap V3**, designed for advanced LPs (Liquidity Providers). Provides detailed position analysis, real-time metrics, and strategy simulations.
 
-## Características Principales
+## Key Features
 
-- **Multi-Chain Support**: Ethereum Sepolia y Avalanche Fuji
-- **Wallet Integration**: RainbowKit + Wagmi v2 con soporte para MetaMask, WalletConnect y Coinbase
-- **Demo Mode**: Explora todas las funcionalidades sin conectar una wallet
-- **Dashboard Completo**: TVL, fees acumuladas, estado de rangos
-- **Detalle de Posiciones**: Visualización de rango de precios, exposición de tokens, Impermanent Loss
-- **Simulaciones**: Rebalanceo, aumento y disminución de liquidez sin transacciones reales
-- **Dark Mode First**: Diseño profesional estilo DeFi
+- **Multi-Chain Support**: Ethereum Sepolia and Avalanche Fuji
+- **Wallet Integration**: RainbowKit + Wagmi v2 with MetaMask, WalletConnect, and Coinbase support
+- **Demo Mode**: Explore all features without connecting a wallet
+- **Complete Dashboard**: TVL, accrued fees, range status
+- **Position Details**: Price range visualization, token exposure, Impermanent Loss
+- **Simulations**: Rebalancing, adding and removing liquidity without real transactions
+- **Dark Mode First**: Professional DeFi-style design
 
 ---
 
-## Stack Tecnológico
+## Tech Stack
 
-| Categoría | Tecnología |
-|-----------|------------|
+| Category | Technology |
+|----------|------------|
 | Framework | Next.js 15.5.7+ (App Router) |
-| Lenguaje | TypeScript (strict mode) |
+| Language | TypeScript (strict mode) |
 | Styling | Tailwind CSS v4 |
 | Web3 | Wagmi v2 + Viem + RainbowKit |
 | State Management | Zustand (persist) |
 | Data Fetching | TanStack Query v5 |
-| Protocolos | Uniswap V3 SDK |
-| Redes | Ethereum Sepolia, Avalanche Fuji |
+| Protocols | Uniswap V3 SDK |
+| Networks | Ethereum Sepolia, Avalanche Fuji |
 
 ---
 
-## Flujo de la Aplicación
+## Application Flow
 
 ```mermaid
 flowchart TD
-    A[Landing Page] --> B{Wallet Conectada?}
-    B -->|No| C[Demo Mode Automático]
-    B -->|Sí| D[Datos en Vivo]
+    A[Landing Page] --> B{Wallet Connected?}
+    B -->|No| C[Automatic Demo Mode]
+    B -->|Yes| D[Live Data]
     C --> E[Dashboard]
     D --> E
-    E --> F[Lista de Posiciones]
-    F --> G[Detalle de Posición]
-    G --> H{Simulaciones}
-    H --> I[Rebalancear Rango]
-    H --> J[Agregar Liquidez]
-    H --> K[Remover Liquidez]
+    E --> F[Position List]
+    F --> G[Position Detail]
+    G --> H{Simulations}
+    H --> I[Rebalance Range]
+    H --> J[Add Liquidity]
+    H --> K[Remove Liquidity]
 
-    subgraph Métricas
-        E --> L[TVL Total]
-        E --> M[Fees Acumuladas]
-        E --> N[Posiciones en Rango]
-        E --> O[Alertas Out of Range]
+    subgraph Metrics
+        E --> L[Total TVL]
+        E --> M[Accrued Fees]
+        E --> N[In-Range Positions]
+        E --> O[Out of Range Alerts]
     end
 
-    subgraph Análisis
-        G --> P[Rango de Precios]
-        G --> Q[Exposición de Tokens]
+    subgraph Analysis
+        G --> P[Price Range]
+        G --> Q[Token Exposure]
         G --> R[Impermanent Loss]
         G --> S[Net P&L]
     end
@@ -67,7 +67,7 @@ flowchart TD
 
 ---
 
-## Arquitectura del Proyecto
+## Project Architecture
 
 ```mermaid
 graph TB
@@ -122,7 +122,7 @@ graph TB
 
 ---
 
-## Estructura de Carpetas
+## Folder Structure
 
 ```mermaid
 graph LR
@@ -203,14 +203,14 @@ graph LR
 
 ---
 
-## Instalación
+## Installation
 
-### Requisitos Previos
+### Prerequisites
 
 - Node.js 18.17+
 - pnpm 8.0+
 
-### Pasos
+### Steps
 
 ```bash
 git clone <repository-url>
@@ -221,9 +221,9 @@ pnpm install
 pnpm dev
 ```
 
-La aplicación estará disponible en `http://localhost:3000`
+The application will be available at `http://localhost:3000`
 
-### Build de Producción
+### Production Build
 
 ```bash
 pnpm build
@@ -232,46 +232,46 @@ pnpm start
 
 ---
 
-## Uso
+## Usage
 
 ### Demo Mode
 
-El Demo Mode se activa automáticamente cuando no hay wallet conectada. También puedes activarlo manualmente desde el dashboard.
+Demo Mode activates automatically when no wallet is connected. You can also enable it manually from the dashboard.
 
-**Características del Demo Mode:**
-- 5 posiciones de ejemplo con diferentes pools
-- Datos realistas de TVL y fees
-- Posiciones in-range y out-of-range
-- Persistencia permanente del estado con Zustand
+**Demo Mode Features:**
+- 5 sample positions with different pools
+- Realistic TVL and fees data
+- In-range and out-of-range positions
+- Permanent state persistence with Zustand
 
-### Conectar Wallet
+### Connect Wallet
 
-1. Click en "Connect Wallet" en el header
-2. Selecciona tu wallet (MetaMask, WalletConnect, Coinbase)
-3. Aprueba la conexión
-4. Asegúrate de estar en una red soportada (Sepolia o Fuji)
+1. Click "Connect Wallet" in the header
+2. Select your wallet (MetaMask, WalletConnect, Coinbase)
+3. Approve the connection
+4. Make sure you're on a supported network (Sepolia or Fuji)
 
 ### Dashboard
 
-El dashboard muestra:
-- **TVL Total**: Valor total de todas tus posiciones
-- **Fees Acumuladas**: Fees pendientes de reclamar
-- **Posiciones**: Número total de posiciones activas
-- **Out of Range**: Alertas de posiciones fuera de rango
+The dashboard displays:
+- **Total TVL**: Total value of all your positions
+- **Accrued Fees**: Unclaimed pending fees
+- **Positions**: Total number of active positions
+- **Out of Range**: Alerts for out-of-range positions
 
-### Simulaciones
+### Simulations
 
-Las simulaciones te permiten probar estrategias sin realizar transacciones reales:
+Simulations allow you to test strategies without making real transactions:
 
-| Simulación | Descripción |
+| Simulation | Description |
 |------------|-------------|
-| Rebalance | Ajustar el rango de precios de una posición |
-| Add Liquidity | Agregar más tokens a una posición existente |
-| Remove Liquidity | Retirar liquidez parcial o totalmente |
+| Rebalance | Adjust the price range of a position |
+| Add Liquidity | Add more tokens to an existing position |
+| Remove Liquidity | Withdraw liquidity partially or completely |
 
 ---
 
-## Cálculos Uniswap V3
+## Uniswap V3 Calculations
 
 ### Tick Math
 
@@ -288,19 +288,19 @@ IL = 2 * sqrt(priceRatio) / (1 + priceRatio) - 1
 
 ### Position Health
 
-Una posición está "in range" cuando:
+A position is "in range" when:
 ```
 tickLower <= currentTick < tickUpper
 ```
 
 ---
 
-## Contratos Soportados
+## Supported Contracts
 
 ### Ethereum Sepolia
 
-| Contrato | Dirección |
-|----------|-----------|
+| Contract | Address |
+|----------|---------|
 | NonfungiblePositionManager | `0x1238536071E1c677A632429e3655c799b22cDA52` |
 | Factory | `0x0227628f3F023bb0B980b67D528571c95c6DaC1c` |
 | SwapRouter02 | `0x3bFA4769FB09eefC5a80d6E87c3B9C650f7Ae48E` |
@@ -310,7 +310,7 @@ tickLower <= currentTick < tickUpper
 
 ## State Management
 
-El estado del Demo Mode se gestiona con **Zustand** y persiste automáticamente en localStorage:
+Demo Mode state is managed with **Zustand** and automatically persists to localStorage:
 
 ```typescript
 interface DemoState {
@@ -325,25 +325,25 @@ interface DemoState {
 
 ## Roadmap
 
-- [ ] Soporte para Mainnet
-- [ ] Histórico de transacciones
-- [ ] Notificaciones de out-of-range
-- [ ] Integración con más DEXs
-- [ ] Gráficos de performance
-- [ ] Export de datos a CSV
+- [ ] Mainnet support
+- [ ] Transaction history
+- [ ] Out-of-range notifications
+- [ ] Integration with more DEXs
+- [ ] Performance charts
+- [ ] Export data to CSV
 
 ---
 
-## Licencia
+## License
 
-MIT License - Ver [LICENSE](LICENSE) para más detalles.
+MIT License - See [LICENSE](LICENSE) for more details.
 
 ---
 
-## Contribuir
+## Contributing
 
-1. Fork el repositorio
-2. Crea una rama (`git checkout -b feature/nueva-feature`)
-3. Commit tus cambios (`git commit -m 'Add nueva feature'`)
-4. Push a la rama (`git push origin feature/nueva-feature`)
-5. Abre un Pull Request
+1. Fork the repository
+2. Create a branch (`git checkout -b feature/new-feature`)
+3. Commit your changes (`git commit -m 'Add new feature'`)
+4. Push to the branch (`git push origin feature/new-feature`)
+5. Open a Pull Request
